@@ -9,7 +9,7 @@ export default function Home() {
   // const [src,setSrc]=useState('https://www.youtube.com/embed/GNWLILeztaI?controls=0&autoplay=1&mute=0')
 
   const [muted, setMuted] = useState(true)
-  const [playing, setPlaying] = useState(true)
+  const [playing, setPlaying] = useState(false)
   const [videoSrc, setVideoSrc] = useState('')
   const [audioSrc, setAudioSrc] = useState('')
   const [volume, setVolume] = useState(1)
@@ -36,13 +36,15 @@ export default function Home() {
           position: 'fixed',
           width: '100vw',
           height: '100vh',
+          bgcolor:'black'
         }}
       >
         <RadioStations
           radioStations={radioStations}
           setVideoSrc={setVideoSrc}
           setAudioSrc={setAudioSrc}
-          setMuted={setMuted} />
+          setMuted={setMuted}
+          setPlaying={setPlaying} />
         <RadioVideo
           videoSrc={videoSrc}
           audioSrc={audioSrc}
