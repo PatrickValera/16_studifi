@@ -5,27 +5,33 @@ import ReactPlayer from 'react-player/youtube'
 const RadioVideo = ({ videoSrc, audioSrc, playing, muted, volume }) => {
 
     const [loaded,setLoaded]=useState(false)
+    const audio=useRef()
+    useEffect(()=>{
+        if(playing)audio.current.play()
+        else audio.current.pause()
+    },[playing])
     useEffect(()=>{
         setLoaded(false)
     },[videoSrc])
     useEffect(() => {
     console.log('volume: ',volume)
+    audio.current.volume=volume
     }, [volume])
     
     return (
         <Box className='video-container' sx={{ position: 'relative'}}
             onClick={(e) => {
-                e.preventDefault()
                 e.stopPropagation()
             }}
         >
-            <ReactPlayer
+            {/* <ReactPlayer
                 style={{ opacity: '0' }}
                 loop={true}
                 playing={playing}
                 url={audioSrc}
                 volume={volume}
-            />
+            /> */}
+            {/* ============== VIDEO ============== */}
             <ReactPlayer
                 className='video-iframe'
                 loop={true}
@@ -37,6 +43,9 @@ const RadioVideo = ({ videoSrc, audioSrc, playing, muted, volume }) => {
                     setLoaded(true)
                 }}}
             />
+            {/* ============== AUDIO ============== */}
+            <audio ref={audio} controls autoPlay src='/testaudio.mp3' type="audio/mpeg" ></audio>
+
             <Box className='video-player-overlay' sx={{ position: 'absolute',display:'flex',flexDirection:'column',width:'100%',top:'0',bottom:'0' ,bgcolor:`${loaded?'none':'#111'}`,transition:'all 300ms ease-in'}}
                 onClick={(e) => e.stopPropagation()}
             >
