@@ -41,6 +41,7 @@ export default function Home() {
       >
         <RadioStations
           radioStations={radioStations}
+          playing={playing}
           setVideoSrc={setVideoSrc}
           setAudioSrc={setAudioSrc}
           setMuted={setMuted}
@@ -52,6 +53,7 @@ export default function Home() {
           playing={playing}
           muted={muted}
           volume={volume}
+          setPlaying={setPlaying}
         />
         <RadioVideoController
           playing={playing}
