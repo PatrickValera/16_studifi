@@ -12,7 +12,7 @@ export default function Home() {
   const [playing, setPlaying] = useState(false)
   const [videoSrc, setVideoSrc] = useState('')
   const [audioSrc, setAudioSrc] = useState('')
-  const [volume, setVolume] = useState(1)
+  const [volume, setVolume] = useState(0)
   useEffect(() => {
     const evt = new MouseEvent('click', {
       view: window,
@@ -44,7 +44,8 @@ export default function Home() {
           setVideoSrc={setVideoSrc}
           setAudioSrc={setAudioSrc}
           setMuted={setMuted}
-          setPlaying={setPlaying} />
+          setPlaying={setPlaying}
+          setVolume={setVolume} />
         <RadioVideo
           videoSrc={videoSrc}
           audioSrc={audioSrc}

@@ -4,8 +4,8 @@ import ReactPlayer from 'react-player/youtube'
 
 const RadioVideo = ({ videoSrc, audioSrc, playing, muted, volume }) => {
     useEffect(() => {
-    console.log(playing)
-    }, [playing])
+    console.log('volume: ',volume)
+    }, [volume])
     
     return (
         <Box className='video-container' sx={{ position: 'relative'}}
@@ -34,7 +34,7 @@ const RadioVideo = ({ videoSrc, audioSrc, playing, muted, volume }) => {
             >
                 <Box className='overlay-header' sx={{flex:'60px 0 0',bgcolor: 'black', opacity: `${playing ? '.1' : '.9'}`, top: '0', transition:`all ${playing?'350ms ease-in':'120ms ease-out'}`}}></Box>
                 <Box className='overlay-body' sx={{flexGrow:'1'}}></Box>
-                <Box className='overlay-footer' sx={{flex:'20vh 0 0',bgcolor: 'black', opacity: `${playing ? '0' : '1'}`,boxSizing:'content-box', bottom: '0',pb:{xs:'10vh',md:'0'}, transition:`all ${playing?'350ms ease-in':'120ms ease-out'}`}}></Box>
+                <Box className='overlay-footer' sx={{flex:'20vh 0 0',bgcolor: 'black', opacity: `${playing ? '0' : '1'}`,boxSizing:'content-box', bottom: '0',pb:{xs:'10vh',sx:'5vh',md:'0'}, transition:`all ${playing?'350ms ease-in':'120ms ease-out'}`}}></Box>
 
             </Box>
         </Box>
