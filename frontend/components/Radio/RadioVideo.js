@@ -17,7 +17,6 @@ const RadioVideo = ({ videoSrc, audioSrc, playing, muted, volume }) => {
             <ReactPlayer
                 style={{ opacity: '0' }}
                 loop={true}
-                muted={muted}
                 playing={playing}
                 url={audioSrc}
                 volume={volume}

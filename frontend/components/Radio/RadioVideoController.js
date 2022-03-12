@@ -8,7 +8,13 @@ const RadioVideoController = ({ playing, setMuted, setPlaying, volume, setVolume
     
     const handleClick=(e) => {
         setMuted(state => !state)
-        setPlaying((state) => !state)
+        if(playing){
+            setPlaying(false)
+        }
+        else{
+            setPlaying(false)
+            setPlaying(true)
+        }
     }
     return (
         <Box className='video-controller'
@@ -45,7 +51,6 @@ const RadioVideoController = ({ playing, setMuted, setPlaying, volume, setVolume
                 }}>
                 {volume>0 ? <AiOutlineSound/>:  <GrVolumeMute/>}
 
-                   
                 </Button>
                 <Slider aria-label='Volume' sx={{flex:'auto 1 1',mr:2,color:'white'}} value={volume} max={1} min={0} step={.01} onChange={(e, val) => {
                     setVolume(val)

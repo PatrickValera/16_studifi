@@ -24,9 +24,9 @@ const RadioStations = ({ radioStations, setVideoSrc, setAudioSrc, setMuted, setP
                         key={index} onClick={() => {
                             setVideoSrc(station.video)
                             setAudioSrc(station.audio)
+                            setPlaying(false)
                             setPlaying(true)
                             setMuted(false)
-                            setTimeout(()=>setVolume(1),100)
                         }}><BsDashLg style={{ marginRight: '3px' }} />{station.name}</Paper>
                 ))}
             </Stack>
