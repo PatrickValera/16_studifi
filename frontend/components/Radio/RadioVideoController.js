@@ -31,7 +31,7 @@ const RadioVideoController = ({ playing, setMuted, setPlaying, volume, setVolume
                 alignItems: 'center',
             }}
         >
-            <Box sx={{ maxWidth: '300px',width:'100%',display:'flex',alignItems:'center' }}>
+            <Box sx={{ maxWidth: '300px',width:'max-content',display:'flex',alignItems:'center' }}>
                 <Button
                 sx={{fontSize:'4rem',color:'white',minWidth:'0',px:'5px'}}
                     variant='text'
@@ -52,7 +52,7 @@ const RadioVideoController = ({ playing, setMuted, setPlaying, volume, setVolume
                 {volume>0 ? <AiOutlineSound/>:  <IoVolumeMuteOutline/>}
 
                 </Button>
-                <Slider aria-label='Volume' sx={{flex:'auto 1 1',mr:2,color:'white'}} value={volume} max={1} min={0} step={.01} onChange={(e, val) => {
+                <Slider aria-label='Volume' sx={{display:{xs:'none',md:'block'},flex:'auto 1 1',mr:2,color:'white'}} value={volume} max={1} min={0} step={.01} onChange={(e, val) => {
                     setVolume(val)
                     lastVol.current=val
                     console.log(lastVol.current)

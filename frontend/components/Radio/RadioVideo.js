@@ -5,12 +5,12 @@ import ReactPlayer from 'react-player/youtube'
 const RadioVideo = ({ videoSrc, audioSrc, playing, muted, volume }) => {
 
     const [loaded, setLoaded] = useState(false)
-    const audio = useRef()
+    // const audio = useRef()
 
-    useEffect(() => {
-        if (playing) audio.current.play()
-        else audio.current.pause()
-    }, [playing])
+    // useEffect(() => {
+    //     if (playing) audio.current.play()
+    //     else audio.current.pause()
+    // }, [playing])
 
     useEffect(() => {
         setLoaded(false)
@@ -18,7 +18,7 @@ const RadioVideo = ({ videoSrc, audioSrc, playing, muted, volume }) => {
 
     useEffect(() => {
         console.log('volume: ', volume)
-        audio.current.volume = volume
+        // audio.current.volume = volume
     }, [volume])
 
     return (
@@ -27,13 +27,14 @@ const RadioVideo = ({ videoSrc, audioSrc, playing, muted, volume }) => {
                 e.stopPropagation()
             }}
         >
-            {/* <ReactPlayer
+            <ReactPlayer
                 style={{ opacity: '0' }}
                 loop={true}
                 playing={playing}
                 url={audioSrc}
                 volume={volume}
-            /> */}
+                mute={muted}
+            />
             {/* ============== VIDEO ============== */}
             <ReactPlayer
                 className='video-iframe'
@@ -48,9 +49,9 @@ const RadioVideo = ({ videoSrc, audioSrc, playing, muted, volume }) => {
                 }}
             />
             {/* ============== AUDIO ============== */}
-            <Box sx={{ zIndex:'900',position:'fixed',bottom:'40vh',display:{xs:'flex',md:'none'},width:'100%',justifyContent:'center' }}>
+            {/* <Box sx={{ zIndex:'900',position:'fixed',bottom:'40vh',display:{xs:'flex',md:'none'},width:'100%',justifyContent:'center' }}>
                 <audio controls ref={audio} autoPlay src='/testaudio.mp3' type="audio/mpeg" ></audio>
-            </Box>
+            </Box> */}
 
             <Box className='video-player-overlay' sx={{ position: 'absolute', display: 'flex', flexDirection: 'column', width: '100%', top: '0', bottom: '0', bgcolor: `${loaded ? 'none' : '#111'}`, transition: 'all 300ms ease-in' }}
                 onClick={(e) => e.stopPropagation()}
