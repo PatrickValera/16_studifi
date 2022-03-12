@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { Box, Button, Slider } from '@mui/material'
 import {AiOutlinePlayCircle,AiOutlinePauseCircle,AiOutlineSound} from 'react-icons/ai'
-import {GrVolumeMute} from 'react-icons/gr'
+import {IoVolumeMuteOutline} from 'react-icons/io5'
 
 const RadioVideoController = ({ playing, setMuted, setPlaying, volume, setVolume }) => {
     const lastVol=useRef(1)
@@ -49,7 +49,7 @@ const RadioVideoController = ({ playing, setMuted, setPlaying, volume, setVolume
                     if(volume===0)setVolume(lastVol.current)
                     else {  setVolume(0)}
                 }}>
-                {volume>0 ? <AiOutlineSound/>:  <GrVolumeMute/>}
+                {volume>0 ? <AiOutlineSound/>:  <IoVolumeMuteOutline/>}
 
                 </Button>
                 <Slider aria-label='Volume' sx={{flex:'auto 1 1',mr:2,color:'white'}} value={volume} max={1} min={0} step={.01} onChange={(e, val) => {
