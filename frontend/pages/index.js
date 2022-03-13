@@ -1,10 +1,12 @@
 import Head from 'next/head'
 import { Box } from '@mui/material'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import radioStations from '../data/radioStations'
 import RadioStations from '../components/Radio/RadioStations'
 import RadioVideo from '../components/Radio/RadioVideo'
 import RadioVideoController from '../components/Radio/RadioVideoController'
+import Timer from '../components/Timer'
+import Overlay from '../components/Overlay'
 export default function Home() {
   // const [src,setSrc]=useState('https://www.youtube.com/embed/GNWLILeztaI?controls=0&autoplay=1&mute=0')
 
@@ -13,16 +15,14 @@ export default function Home() {
   const [videoSrc, setVideoSrc] = useState('')
   const [audioSrc, setAudioSrc] = useState('')
   const [volume, setVolume] = useState(0)
+  const main = useRef()
   useEffect(() => {
-    const evt = new MouseEvent('click', {
-      view: window,
-      bubbles: true,
-      cancelable: true,
-      clientX: 20,
-    })
-    // document.getElementById('but').dispatchEvent(evt)
+    setPlaying(true)
+    setMuted(false)
+    console.log(main.current)
+    
+  }, [audioSrc])
 
-  }, [])
   return (
     <>
       <Head>
@@ -31,6 +31,7 @@ export default function Home() {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Box
+      ref={main}
         component='main'
         sx={{
           position: 'fixed',
@@ -62,6 +63,8 @@ export default function Home() {
           volume={volume}
           setVolume={setVolume}
         />
+        <Timer/>
+        <Overlay playing={playing}/>
       </Box>
     </>
   )

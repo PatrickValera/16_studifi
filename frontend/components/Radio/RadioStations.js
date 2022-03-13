@@ -17,17 +17,20 @@ const RadioStations = ({
     <Box
       className='radio-stations-container'
       sx={{
+        p:2,
         position: 'fixed',
-        height: '100%',
-        p: 1,
-        pl: 4,
-        top: '100px',
         zIndex: '100',
       }}
     >
       <Button
         variant='text'
-        sx={{ color: 'white', fontSize: '2rem', minWidth: '0', p: 0, mb: 2 }}
+        sx={{ 
+          color: 'white', 
+          fontSize: '2rem', 
+          minWidth: '0', 
+          p: 0, 
+          mb: 2 
+        }}
         onClick={() => setListOpen((state) => !state)}
       >
         {!listOpen ? <BsMusicNoteList /> : <AiOutlineCloseCircle />}
@@ -36,10 +39,10 @@ const RadioStations = ({
         spacing={1}
         direction='column'
         sx={{
-          height: `${listOpen ? '50vh' : '0'}`,
-          overflow: 'scroll',
+          opacity: `${listOpen ? '1' : '0'}`,
           pl: 2,
           transition: 'all 300ms ease-in-out',
+          overflow:'clip',
         }}
       >
         {radioStations.map((station, index) => (
@@ -53,6 +56,7 @@ const RadioStations = ({
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
+                textShadow: '2px 2px #111',
               },
               {
                 '&:hover': {
@@ -65,14 +69,9 @@ const RadioStations = ({
               setVideoSrc(station.video)
               setAudioSrc(station.audio)
               setMuted(false)
-              if (playing) setPlaying(false)
-              else {
-                // setPlaying(false)
-                setPlaying(true)
-              }
+              setPlaying(true)
             }}
           >
-            <BsDashLg style={{ marginRight: '3px' }} />
             {station.name}
           </Paper>
         ))}

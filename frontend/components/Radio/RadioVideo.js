@@ -1,8 +1,8 @@
-import { Box } from '@mui/material'
+import { Box, Button } from '@mui/material'
 import React, { useEffect, useRef, useState } from 'react'
 import ReactPlayer from 'react-player/youtube'
 
-const RadioVideo = ({ videoSrc, audioSrc, playing, muted, volume,setPlaying }) => {
+const RadioVideo = ({ videoSrc, audioSrc, playing, muted, volume, setPlaying }) => {
   const [loaded, setLoaded] = useState(false)
   const vidPlayer = useRef()
 
@@ -51,7 +51,7 @@ const RadioVideo = ({ videoSrc, audioSrc, playing, muted, volume,setPlaying }) =
       />
 
       <Box
-        className='video-player-overlay'
+        className=''
         sx={{
           position: 'absolute',
           display: 'flex',
@@ -64,29 +64,7 @@ const RadioVideo = ({ videoSrc, audioSrc, playing, muted, volume,setPlaying }) =
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        <Box
-          className='overlay-header'
-          sx={{
-            flex: '60px 0 0',
-            bgcolor: '#111',
-            opacity: `${playing ? '0' : '1'}`,
-            top: '0',
-            transition: `all ${playing ? '350ms ease-in' : '120ms ease-out'}`,
-          }}
-        ></Box>
-        <Box className='overlay-body' sx={{ flexGrow: '1' }}></Box>
-        <Box
-          className='overlay-footer'
-          sx={{
-            flex: '20vh 0 0',
-            bgcolor: '#111',
-            opacity: `${playing ? '0' : '1'}`,
-            boxSizing: 'content-box',
-            bottom: '0',
-            pb: { xs: '10vh', sx: '5vh', md: '0' },
-            transition: `all ${playing ? '350ms ease-in' : '0ms ease-out'}`,
-          }}
-        ></Box>
+    
       </Box>
     </Box>
   )
