@@ -12,9 +12,9 @@ export default function Home() {
 
   const [muted, setMuted] = useState(true)
   const [playing, setPlaying] = useState(false)
-  const [videoSrc, setVideoSrc] = useState('')
-  const [audioSrc, setAudioSrc] = useState('')
-  const [volume, setVolume] = useState(0)
+  const [videoSrc, setVideoSrc] = useState("https://www.youtube.com/watch?v=5qap5aO4i9A&ab_channel=LofiGirl")
+  const [audioSrc, setAudioSrc] = useState("https://www.youtube.com/watch?v=5qap5aO4i9A&ab_channel=LofiGirl")
+  const [volume, setVolume] = useState(1)
   const main = useRef()
   useEffect(() => {
     setPlaying(true)

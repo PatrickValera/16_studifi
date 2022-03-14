@@ -28,7 +28,6 @@ const RadioVideo = ({ videoSrc, audioSrc, playing, muted, volume, setPlaying }) 
         playing={playing}
         url={audioSrc}
         volume={volume}
-        muted={muted}
       />
       {/* ============== VIDEO ============== */}
       <ReactPlayer

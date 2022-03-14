@@ -56,7 +56,7 @@ const RadioStations = ({
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
-                textShadow: '2px 2px #111',
+                textShadow: '1px 1px #111',
               },
               {
                 '&:hover': {

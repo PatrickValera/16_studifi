@@ -14,6 +14,9 @@ const radioStations = [{
     name: 'Tokyo Dreaming',
     video: 'https://www.youtube.com/embed/EC24rvm5Awk?autoplay=1&start=0',
     audio: 'https://www.youtube.com/embed/EC24rvm5Awk?autoplay=1&start=0',
-
+},{
+    name: 'Chill hop',
+    video:'https://www.youtube.com/c/Chillhopdotcom/videos',
+    audio: 'https://www.youtube.com/watch?v=7NOSDKb0HlU&ab_channel=ChillhopMusic'
 }]
 export default radioStations

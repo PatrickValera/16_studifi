@@ -69,7 +69,7 @@ const RadioVideoController = ({ playing, setMuted, setPlaying, volume, setVolume
                     {playing ? <AiOutlinePauseCircle /> : <AiOutlinePlayCircle />}
                 </Button>
                 <Button
-                    sx={{ fontSize: '3rem', color: 'white', minWidth: 0, px: 1 }}
+                    sx={{ display: { xs: 'none', md: 'block' },fontSize: '3rem', color: 'white', minWidth: 0, px: 1 }}
                     variant='text'
                     disableRipple
                     onClick={() => {
@@ -91,7 +91,7 @@ const RadioVideoController = ({ playing, setMuted, setPlaying, volume, setVolume
                 justifyContent:'right'
             }}>
                 <Button
-                    sx={{color:'white',fontSize:'1.5rem'}}
+                    sx={{display: { xs: 'none', md: 'block' },color:'white',fontSize:'1.5rem'}}
                 onClick={() => {
                     if (fullScreen) CloseFullScreen()
                     else handleFullScreen()
