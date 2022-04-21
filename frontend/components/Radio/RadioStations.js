@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { Box, Button, Paper, Stack } from '@mui/material'
 import { BsDashLg, BsMusicNoteList } from 'react-icons/bs'
 import { AiOutlineCloseCircle } from 'react-icons/ai'
+import {IoClose} from 'react-icons/io5'
+import { flexbox } from '@mui/system'
 const RadioStations = ({
   radioStations,
   setVideoSrc,
@@ -12,70 +14,93 @@ const RadioStations = ({
   playing,
 }) => {
   const [listOpen, setListOpen] = useState(true)
+  const [drawerExtended,setDrawerExtended] = useState(true)
+  const [activeRadio,setActiveRadio] = useState('none')
 
   return (
     <Box
       className='radio-stations-container'
       sx={{
-        p:2,
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100vh',
         position: 'fixed',
         zIndex: '100',
+        bgcolor: `${listOpen&&'rgba(100,100,100,.1)'}`,
+        backdropFilter: `${listOpen && 'blur(10px)'}`,
+        transition: 'all 200ms ease-in-out',
+        p:2
       }}
     >
-      <Button
-        variant='text'
-        sx={{ 
-          color: 'white', 
-          fontSize: '2rem', 
-          minWidth: '0', 
-          p: 0, 
-          mb: 2 
-        }}
-        onClick={() => setListOpen((state) => !state)}
-      >
-        {!listOpen ? <BsMusicNoteList /> : <AiOutlineCloseCircle />}
-      </Button>
-      <Stack
-        spacing={1}
-        direction='column'
+      {/* BUTTON CONTAINER HERE */}
+      <Box
         sx={{
-          opacity: `${listOpen ? '1' : '0'}`,
-          pl: 2,
-          transition: 'all 300ms ease-in-out',
-          overflow:'clip',
+          flex: 'min-content 0 0',
         }}
       >
-        {radioStations.map((station, index) => (
-          <Paper
-            elevation={0}
-            sx={[
-              {
-                bgcolor: 'transparent',
-                color: 'white',
-                fontSize: '1.2rem',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                textShadow: '1px 1px #111',
-              },
-              {
-                '&:hover': {
-                  color: 'red',
+        <Button
+          variant='text'
+          sx={{
+            color: 'white',
+            fontSize: '2rem',
+            mb: 2,
+            minWidth:'50px',
+            minHeight:'50px',
+            bgcolor:'rgba(0,0,0,.6)',
+            backdropFilter: `blur(3px)`,
+            border:`${listOpen?'none':'1px solid rgba(255,255,255,.9)'}`
+          }}
+          onClick={() => setListOpen((state) => !state)}
+        >
+          {!listOpen ? <BsMusicNoteList /> : <IoClose />}
+        </Button>
+      </Box>
+      {/* STATIONS CONTAINER HERE */}
+      <Box
+        sx={{
+          // bgcolor: 'rgba(100,100,100,.1)',
+          // backdropFilter: 'blur(3px) !important',
+          opacity: `${listOpen ? '1' : '0'}`,
+          pointerEvents:`${!listOpen&&'none'}`,
+          transition: 'all 300ms ease-in-out',
+          overflow: 'clip',
+        }}
+      >
+        <Stack spacing={1} direction='column'>
+          {radioStations.map((station, index) => (
+            <Paper
+              elevation={0}
+              sx={[
+                {
+                  px:2,
+                  py:1,
+                  bgcolor: 'transparent',
+                  color: `${activeRadio===index?'yellow':'white'}`,
+                  fontSize: '1.2rem',
+                  cursor: 'pointer',
+                  textShadow: '1px 1px #111',
+                  textAlign: '',
                 },
-              },
-            ]}
-            key={index}
-            onClick={() => {
-              setVideoSrc(station.video)
-              setAudioSrc(station.audio)
-              setMuted(false)
-              setPlaying(true)
-            }}
-          >
-            {station.name}
-          </Paper>
-        ))}
-      </Stack>
+                {
+                  '&:hover': {
+                    color: 'yellow',
+                  },
+                },
+              ]}
+              key={index}
+              onClick={() => {
+                setActiveRadio(index)
+                setVideoSrc(station.video)
+                setAudioSrc(station.audio)
+                setMuted(false)
+                setPlaying(true)
+              }}
+            >
+              {drawerExtended?station.name:index+1}
+            </Paper>
+          ))}
+        </Stack>
+      </Box>
     </Box>
   )
 }
