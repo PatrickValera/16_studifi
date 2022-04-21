@@ -63,7 +63,6 @@ const RadioStations = ({
           opacity: `${listOpen ? '1' : '0'}`,
           pointerEvents:`${!listOpen&&'none'}`,
           transition: 'all 300ms ease-in-out',
-          overflow: 'clip',
         }}
       >
         <Stack spacing={1} direction='column'>
