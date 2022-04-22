@@ -2,14 +2,18 @@ import { Box, Button, Stack } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { BiStopwatch } from 'react-icons/bi'
 import { IoClose } from 'react-icons/io5'
+import { Howl, Howler } from 'howler'
 
-const Timer = () => {
+const Timer = ({ volume, setVolume }) => {
   const [timerFormOpen, setTimerFromOpen] = useState(false)
   const [time, setTime] = useState()
   const [timerPlay, setTimerPlay] = useState(false)
   const [timer, setTimer] = useState(null)
-  const [ring, setRing] = useState()
-
+  const [sound, setSound] = useState(new Howl({
+    src: ['ring.mp3'],
+    loop: true
+  }))
+  // var ring=sound.play()
   function getMinutes() {
     if (!time) return '00'
     let minute = Math.floor(time / 60)
@@ -24,6 +28,7 @@ const Timer = () => {
     else return String(seconds)
   }
 
+
   useEffect(() => {
     if (timerPlay && time) {
       setTimer(
@@ -31,28 +36,23 @@ const Timer = () => {
           setTime((state) => state - 1)
         }, 1000)
       )
-      if (ring) {
-        ring.pause()
-        ring.currentTime = 0
-      }
+      sound.stop()
     } else clearInterval(timer)
     return () => clearInterval(timer)
   }, [timerPlay])
 
   useEffect(() => {
+    if (time == 3) {
+      setVolume(.5)
+    }
     if (time <= 0) {
       setTimerPlay(false)
-      if (ring) {
-        ring.loop = true
-        ring.play()
-      }
+      sound.play()
       clearInterval(timer)
     }
   }, [time])
 
-  useEffect(() => {
-    setRing(new Audio('./ring.mp3'))
-  }, [])
+
   return (
     <Box
       className='radio-stations-container'
@@ -102,7 +102,7 @@ const Timer = () => {
         }}
       >
         <Stack direction='column'>
-          {[0.1, 20, 30].map((time) => (
+          {[0.1,5,10, 20, 30].map((time) => (
             <Button
               key={time}
               sx={{ color: 'white', minWidth: 'unset' }}
@@ -116,9 +116,9 @@ const Timer = () => {
           ))}
           <Button
             sx={{ color: 'white', minWidth: 'unset' }}
-            onClick={() => setTimerPlay(true)}
+            onClick={() => setTimerPlay(state=>!state)}
           >
-            Go
+            {timerPlay?"Pause":"Start"}
           </Button>
         </Stack>
       </Box>

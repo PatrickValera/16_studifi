@@ -20,7 +20,7 @@ export default function Home() {
     setPlaying(true)
     setMuted(false)
     console.log(main.current)
-    
+
   }, [audioSrc])
 
   return (
@@ -31,13 +31,13 @@ export default function Home() {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Box
-      ref={main}
+        ref={main}
         component='main'
         sx={{
           position: 'fixed',
           width: '100vw',
           height: '100vh',
-          bgcolor:'black'
+          bgcolor: 'black'
         }}
       >
         <RadioStations
@@ -63,8 +63,10 @@ export default function Home() {
           volume={volume}
           setVolume={setVolume}
         />
-        <Timer/>
-        <Overlay playing={playing}/>
+        <Timer
+          setVolume={setVolume}
+          volume={setVolume} />
+        <Overlay playing={playing} />
       </Box>
     </>
   )

@@ -11,7 +11,7 @@ const RadioVideo = ({ videoSrc, audioSrc, playing, muted, volume, setPlaying }) 
   }, [videoSrc])
 
   useEffect(() => {
-    console.log('volume: ', volume)
+    // console.log('volume: ', volume)
   }, [volume])
 
   return (
