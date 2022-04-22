@@ -104,6 +104,7 @@ const Timer = () => {
         <Stack direction='column'>
           {[0.1, 20, 30].map((time) => (
             <Button
+              key={time}
               sx={{ color: 'white', minWidth: 'unset' }}
               onClick={() => {
                 setTime(time * 60)
